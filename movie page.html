@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Website</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+            display: flex;
+        }
+
+        nav a {
+            padding: 8px;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+      nav a {
+    padding: 8px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    display: inline-block; /* Add this line to make them blocky */
+    background-color: #555; /* Add a background color */
+    border-radius: 8px; /* Add border-radius for a rounded appearance */
+    transition: background-color 0.3s ease; /* Add transition for a smooth effect */
+}
+
+nav a:hover {
+    background-color: #777; /* Change background color on hover */
+}
+
+
+        #searchInput {
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #movieContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .movieCard {
+            margin: 10px;
+            width: 250px;
+            height: 350px;
+            text-align: left;
+            background-color: #333;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .movieCard:hover {
+            transform: scale(1.05);
+        }
+
+        .movieFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movie generator</h1>
+        <nav>
+            <a href="https://example.com/page1">movie</a>
+            <a href="https://example.com/page2">shows</a>
+        </nav>
+        <label for="searchInput">Enter IMDB ID number:</label>
+        <input type="text" id="searchInput">
+        <button onclick="searchMovie()">Search</button>
+    </header>
+
+    <div id="movieContainer"></div>
+
+    <script>
+        function searchMovie() {
+            const searchInput = document.getElementById('searchInput').value;
+
+            if (!searchInput) {
+                alert('Please enter a valid input.');
+                return;
+            }
+
+            const movieLink = `https://vidsrc.to/embed/movie/${searchInput}`;
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movieCard';
+
+            const movieFrame = document.createElement('iframe');
+            movieFrame.src = movieLink;
+            movieFrame.className = 'movieFrame';
+            
+            // Add the allowfullscreen attribute
+            movieFrame.setAttribute('allowfullscreen', 'true');
+
+            movieCard.appendChild(movieFrame);
+
+            const movieContainer = document.getElementById('movieContainer');
+            movieContainer.innerHTML = '';
+            movieContainer.appendChild(movieCard);
+        }
+    </script>
+</body>
+</html>
+
 
